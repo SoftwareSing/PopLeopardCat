@@ -51,6 +51,16 @@
             var pop_count = 0;
             var counter = document.querySelector("#counter");
 
+            function pop() {
+                no15.setAttribute("style","visibility: hidden;");
+                no15_pop.setAttribute("style","visibility: unset;");
+            }
+
+            function unpop() {
+                no15_pop.setAttribute("style","visibility: hidden;");
+                no15.setAttribute("style","visibility: unset;");
+            }
+
             var storage = {};
             storage.load = function () {
                 var count = localStorage.getItem("pop_count");
@@ -83,12 +93,10 @@
                 no15.setAttribute("src","./up.png");
                 no15_container.addEventListener('touchstart', function (e) {
                     count_up();
-                    no15.setAttribute("style","visibility: hidden;");
-                    no15_pop.setAttribute("style","visibility: unset;");
+                    pop();
                 });
                 no15_container.addEventListener('touchend', function (e) {
-                    no15_pop.setAttribute("style","visibility: hidden;");
-                    no15.setAttribute("style","visibility: unset;");
+                    unpop();
                 });
             } else {
                 no15_container.addEventListener('mouseover', function (e) {
@@ -101,24 +109,20 @@
                 //  點擊事件
                 no15_container.addEventListener('mousedown', function (e) {
                     count_up();
-                    no15.setAttribute("style","visibility: hidden;");
-                    no15_pop.setAttribute("style","visibility: unset;");
+                    pop();
                 });
                 no15_container.addEventListener('mouseup', function (e) {
-                    no15_pop.setAttribute("style","visibility: hidden;");
-                    no15.setAttribute("style","visibility: unset;");
+                    unpop();
                 });
 
                 //  鍵盤事件
                 document.addEventListener('keydown', function (e) {
-                    no15.setAttribute("style","visibility: hidden;");
-                    no15_pop.setAttribute("style","visibility: unset;");
+                    pop();
                 });
                 document.addEventListener('keyup', function (e) {
                     count_up();
-                    no15_pop.setAttribute("style","visibility: hidden;");
                     no15.setAttribute("src","./up.png");
-                    no15.setAttribute("style","visibility: unset;");
+                    unpop();
                 });
             }
         }
